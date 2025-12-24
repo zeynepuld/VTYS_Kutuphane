@@ -254,12 +254,13 @@ DECLARE
     gecikme_gun INTEGER;
     ceza_tutari DECIMAL(10,2);
 BEGIN
-    IF p_TeslimTarihi > (p_VerilisTarihi + INTERVAL '15 days') THEN
-        gecikme_gun := p_TeslimTarihi - (p_VerilisTarihi + INTERVAL '15 days');
+    IF p_TeslimTarihi > (p_VerilisTarihi + 15) THEN
+        gecikme_gun := p_TeslimTarihi - (p_VerilisTarihi + 15);
         ceza_tutari := gecikme_gun * 5.00;
     ELSE
         ceza_tutari := 0.00;
     END IF;
+
     RETURN ceza_tutari;
 END;
 $$;
@@ -474,4 +475,5 @@ INSERT INTO Kisiler (Ad, Soyad, TC, Tel, IlceID) VALUES
 INSERT INTO Personel (PersonelID, Maas, Departman) VALUES
 (6, 15000.00, 'Kütüphane Görevlisi'),
 (7, 18000.00, 'Kütüphane Müdürü'),
+
 (8, 14000.00, 'Arşiv Sorumlusu');
